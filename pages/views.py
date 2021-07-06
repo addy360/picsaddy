@@ -4,3 +4,15 @@ from django.shortcuts import render
 
 def index(request):
     return render(request,"index.html")
+
+def bio(request):
+    return render(request,"bio.html")
+
+def blog(request):
+    return render(request,"blog.html")
+
+def category(request):
+    return render(request,"category.html")
+
+def contact(request):
+    return render(request,"contact.html")

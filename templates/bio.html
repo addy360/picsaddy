@@ -1,56 +1,25 @@
-{% extends 'layouts/base.html' %}
-
-
-{% load static %}
-
-
-{% block title %} | biography {% endblock  %}
-
-{% block content %} 
+{% extends 'layouts/base.html' %} {% load static %} {% block title %} |
+biography {% endblock %} {% block content %}
 <div class="container-fluid photos">
-    <div class="row justify-content-center">
-      <div class="col-md-6 pt-4">
-        <figure class="mb-5" data-aos="fade-up">
-          <img src="{% static 'images/blog_1.jpg' %}" alt="Image" class="img-fluid" />
-        </figure>
-        <h2 class="text-white mb-4" data-aos="fade-up">
-          Hey There! I'm Rhea
-        </h2>
-        <div class="row" data-aos="fade-up">
-          <div class="col-md-12">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur
-              <a href="bio.html#">adipisicing</a> elit. Ipsa explicabo
-              quasi cum, laudantium neque at veniam itaque atque
-              <a href="bio.html#">necessitatibus</a> temporibus! Beatae
-              sit soluta magni neque autem, suscipit dolorem, quo alias.
-            </p>
-            <p>
-              Similique deserunt sit accusamus ipsum optio. Quia, sapiente
-              saepe culpa ad nemo velit,
-              <a href="bio.html#">veritatis</a> numquam impedit voluptate
-              quo tempore. Perferendis suscipit dolores, ducimus esse
-              cupiditate possimus quae quis iusto rem?
-            </p>
-            <p>
-              Excepturi soluta maxime velit vitae tempore corporis,
-              aliquid quidem modi libero! Optio minima esse hic
-              repellendus a dolor perferendis dolore impedit quis et!
-              Minus maxime itaque beatae totam eos reiciendis.
-            </p>
-            <p class="mb-5">
-              Ad veritatis eos dicta, animi et voluptates iusto, excepturi
-              corporis amet, laboriosam, officiis libero. Odio excepturi
-              aliquid suscipit nobis odit. Tenetur expedita impedit error
-              consequatur sunt voluptatum voluptate voluptatem vitae!
-            </p>
-            <p cass="mt-4">
-              Thanks! <br />
-              Rhea M.
-            </p>
-          </div>
+  {% for bio in bios %}
+  <div class="row justify-content-center">
+    <div class="col-md-6 pt-4">
+      <figure class="mb-5" data-aos="fade-up">
+        <img src="{{ bio.image.url }}" alt="Image" class="img-fluid" />
+      </figure>
+      <h2 class="text-white mb-4" data-aos="fade-up">{{ bio.title }}</h2>
+      <div class="row" data-aos="fade-up">
+        <div class="col-md-12">
+          <p>{{ bio.description }}</p>
+          <p cass="mt-4">
+            Thanks! <br />
+            {{ bio.author.username }}
+          </p>
         </div>
       </div>
     </div>
   </div>
-{% endblock  %} 
+
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-from pages.models import Blog
+from pages.models import Bio, Blog
 from django.shortcuts import render
 
 # Create your views here.
@@ -9,13 +9,14 @@ def index(request):
 
 
 def bio(request):
-    return render(request, "bio.html")
+    bios = Bio.objects.all()
+    context = {"bios": bios}
+    return render(request, "bio.html", context=context)
 
 
 def blog(request):
     blogs = Blog.objects.all()
     context = {"blogs": blogs}
-    print(context)
     return render(request, "blog.html", context=context)
 
 

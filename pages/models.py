@@ -37,22 +37,9 @@ class Bio(models.Model):
         return self.title
 
 
-class Category(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    cat_name = models.CharField(max_length=20)
-    created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
-
-    def __str__(self):
-        return self.cat_name
-
-    def __repr__(self):
-        return self.cat_name
-
-
 class Gallery(models.Model):
     id = models.BigAutoField(primary_key=True)
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField("Category")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.FileField(upload_to='gallery')
     created_at = models.DateField(auto_now_add=True)
@@ -63,3 +50,21 @@ class Gallery(models.Model):
 
     def __repr__(self):
         return self.author.username
+
+
+class Category(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    cat_name = models.CharField(max_length=20)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
+
+    def images(self, id):
+        filtered = Gallery.objects.prefetch_related(
+            "categories").filter(categories=id)
+        return filtered.count(), filtered.first().image.url
+
+    def __str__(self):
+        return self.cat_name
+
+    def __repr__(self):
+        return self.cat_name

@@ -1,11 +1,19 @@
-from pages.models import Bio, Blog
+from pages.models import Bio, Blog, Category, Gallery
 from django.shortcuts import render
+from pprint import pprint
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, "index.html")
+    categories = Category.objects.all()
+    formated = []
+    for cat in categories:
+        res = cat.images(f'{cat.id}')
+        formated.append({"name": cat.cat_name,
+                        "photo_count": res[0], "url": res[1], })
+    context = {"categories": formated}
+    return render(request, "index.html", context=context)
 
 
 def bio(request):

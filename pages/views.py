@@ -1,3 +1,4 @@
+from pages.models import Blog
 from django.shortcuts import render
 
 # Create your views here.
@@ -12,7 +13,10 @@ def bio(request):
 
 
 def blog(request):
-    return render(request, "blog.html")
+    blogs = Blog.objects.all()
+    context = {"blogs": blogs}
+    print(context)
+    return render(request, "blog.html", context=context)
 
 
 def category(request, id):

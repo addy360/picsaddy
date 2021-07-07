@@ -9,58 +9,28 @@ me {% endblock %} {% block content %}
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12" data-aos="fade-up">
-          <div class="d-flex blog-entry align-items-start">
-            <div class="mr-5 img-wrap">
-              <a href="blog.html#"
-                ><img
-                  src="{% static 'images/blog_1.jpg' %}"
-                  alt="Image"
-                  class="img-fluid"
-              /></a>
-            </div>
-            <div>
-              <h2 class="mt-0 mb-2">
-                <a href="blog.html#">Advanced Photography Tutorial For Pro</a>
-              </h2>
-              <div class="meta mb-3">
-                Posted by James on
-                <a href="blog.html#">Feb. 24, 2020</a>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Officiis aliquid doloremque qui, saepe alias eum?
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12" data-aos="fade-up">
-          <div class="d-flex blog-entry align-items-start">
-            <div class="mr-5 img-wrap">
-              <a href="blog.html#"
-                ><img
-                  src="{% static 'images/blog_1.jpg' %}"
-                  alt="Image"
-                  class="img-fluid"
-              /></a>
-            </div>
-            <div>
-              <h2 class="mt-0 mb-2">
-                <a href="blog.html#">Advanced Photography Tutorial For Pro</a>
-              </h2>
-              <div class="meta mb-3">
-                Posted by James on
-                <a href="blog.html#">Feb. 24, 2020</a>
-              </div>
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Voluptatibus provident laudantium est iusto repellat ut numquam
-                vel minima reiciendis sapiente!
-              </p>
-            </div>
-          </div>
-        </div>
+        {% for blog in blogs %}
 
+        <div class="col-md-12" data-aos="fade-up">
+          <div class="d-flex blog-entry align-items-start">
+            <div class="mr-5 img-wrap">
+              <a href="blog.html#"
+                ><img src="{{ blog.image.url }}" alt="Image" class="img-fluid"
+              /></a>
+            </div>
+            <div>
+              <h2 class="mt-0 mb-2">
+                <a href="blog.html#"> {{ blog.title }} </a>
+              </h2>
+              <div class="meta mb-3">
+                Posted by {{ blog.author.username }} on
+                <a href="blog.html#">{{ blog.created_at }}</a>
+              </div>
+              <p>{{ blog.description }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
         <div class="col-12 text-center">
           <div class="custom-pagination">
             <span>1</span>

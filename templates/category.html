@@ -1,11 +1,32 @@
-{% extends 'layouts/base.html' %}
-
-
-{% load static %}
-
-
-{% block title %} | Category {% endblock  %}
-
-{% block content %} 
-<h4>Category</h4>
-{% endblock  %} 
+{% extends 'layouts/base.html' %} {% load static %} {% block title %} | Category
+{% endblock %} {% block content %}
+<div class="container-fluid photos">
+  <div class="row pt-4 mb-5 text-center">
+    <div class="col-12">
+      <h2 class="text-white mb-4">'Nature' &mdash; 19 Photos</h2>
+    </div>
+  </div>
+  <div class="row align-items-stretch">
+    <div
+      class="col-6 col-md-6 col-lg-6"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      <a
+        href="{% static 'images/blog_1.jpg' %}"
+        class="d-block photo-item"
+        data-fancybox="gallery"
+      >
+        <img
+          src="{% static 'images/blog_1.jpg' %}"
+          alt="Image"
+          class="img-fluid"
+        />
+        <div class="photo-text-more">
+          <span class="icon icon-search"></span>
+        </div>
+      </a>
+    </div>
+  </div>
+  {% endblock %}
+</div>

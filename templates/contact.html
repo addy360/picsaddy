@@ -15,7 +15,7 @@ me {% endblock %} {% block content %}
           </p>
           <div class="row">
             <div class="col-md-12">
-              <form action="contact.html#">
+              <form action="{% url 'contact' %}" method="POST">
                 <div class="row form-group">
                   <div class="col-md-6 mb-3 mb-md-0">
                     <label class="text-white" for="fname">First Name</label>

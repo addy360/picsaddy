@@ -3,6 +3,9 @@ from django.contrib import admin
 
 # Register your models here.
 
+admin.site.site_header = "PicsAddy control panel"
+admin.site.site_title = "picsaddy"
+
 
 class BlogAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'image', 'created_at')

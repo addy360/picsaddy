@@ -28,7 +28,13 @@ def blog(request):
 
 
 def category(request, id):
-    return render(request, "category.html")
+    images = Gallery.objects.filter(
+        categories=id).prefetch_related('categories')
+    # TODO fix this!!!
+    cat = Category.objects.get(id=id).cat_name
+    context = {"images": images, "category_name": cat,
+               "total_images": images.count()}
+    return render(request, "category.html", context=context)
 
 
 def contact(request):

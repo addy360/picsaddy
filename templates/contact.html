@@ -90,4 +90,46 @@ me {% endblock %} {% block content %}
     </div>
   </div>
 </div>
-{% endblock %}
+{% if errors %}
+<div id="errors">
+  <style>
+    .remove {
+      display: none;
+    }
+    .error {
+      position: fixed;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      background-color: hsl(0, 88%, 90%);
+      padding: 1rem;
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+      border: 1px solid hsl(0, 100%, 40%);
+    }
+
+    .error__list--item {
+      color: hsl(0, 100%, 40%);
+    }
+  </style>
+  <div class="error">
+    <ul class="error__list">
+      {% for name, error in errors %}
+      <li class="error__list--item">
+        {{ name }}
+        <ul>
+          {% for err in error %}
+          <li>{{ err }}</li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <script>
+    const errorDiv = document.getElementById("errors");
+    setTimeout(() => errorDiv.classList.add("remove"), 5000);
+  </script>
+</div>
+{% endif %} {% endblock %}

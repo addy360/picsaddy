@@ -6,7 +6,7 @@ from django.contrib import admin
 
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('id', 'firstName', 'lastName',
-                    'email', 'subject', 'created_at')
+                    'email', 'subject', 'message', 'created_at')
     list_filter = ('email', 'subject')
 
 

@@ -1,3 +1,4 @@
+from contact.models import Contact
 from pages.helper import validate_post_data
 from django.shortcuts import render
 
@@ -17,5 +18,15 @@ def contact(request):
             context = {"errors": formated_errors}
             return render(request, "contact.html", context)
         print('[+] all data are clean')
+        print(clean_data)
+
+        contact = Contact()
+        contact.firstName = clean_data['fname']
+        contact.lastName = clean_data['lname']
+        contact.email = clean_data['email']
+        contact.subject = clean_data['subject']
+        contact.message = clean_data['message']
+
+        contact.save()
 
     return render(request, "contact.html")

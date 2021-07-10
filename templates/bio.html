@@ -20,6 +20,10 @@ biography {% endblock %} {% block content %}
     </div>
   </div>
 
+  {% empty %}
+  <div class="alert w-75 mx-auto text-center my-5">
+    <h4>No content at the moment</h4>
+  </div>
   {% endfor %}
 </div>
 {% endblock %}

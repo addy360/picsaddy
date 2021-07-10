@@ -1,4 +1,4 @@
-from pages.views import blog, category, contact, index, bio
+from pages.views import blog, category, index, bio
 from django.urls import path
 
 urlpatterns = [
@@ -6,5 +6,4 @@ urlpatterns = [
     path('blog', blog, name="blog"),
     path('category/<int:id>', category, name="category"),
     path('bio', bio, name="bio"),
-    path('contact', contact, name="contact")
 ]

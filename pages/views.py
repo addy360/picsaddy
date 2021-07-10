@@ -1,8 +1,7 @@
-from pprint import pp, pprint
 
 from django.shortcuts import render
 
-from pages.helper import format_categories, validate_post_data
+from pages.helper import format_categories
 from pages.models import Bio, Blog, Category, Gallery
 
 # Create your views here.
@@ -35,20 +34,3 @@ def category(request, id):
     context = {"images": images, "category_name": cat,
                "total_images": images.count()}
     return render(request, "category.html", context=context)
-
-
-def contact(request):
-    if request.method == "POST":
-        errors, clean_data = validate_post_data(request)
-        if len(errors):
-            formated_errors = []
-            for err in errors:
-                e = list(err.items())[0]
-                err_res = [e[0], e[1]]
-                formated_errors.append(err_res)
-            print(formated_errors)
-            context = {"errors": formated_errors}
-            return render(request, "contact.html", context)
-        print('[+] all data are clean')
-
-    return render(request, "contact.html")

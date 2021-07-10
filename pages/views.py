@@ -2,7 +2,7 @@ from pprint import pprint
 
 from django.shortcuts import render
 
-from pages.helper import format_categories
+from pages.helper import format_categories, validate_post_data
 from pages.models import Bio, Blog, Category, Gallery
 
 # Create your views here.
@@ -38,4 +38,8 @@ def category(request, id):
 
 
 def contact(request):
+    if request.method == "POST":
+        res = validate_post_data(request)
+        pprint(res)
+
     return render(request, "contact.html")

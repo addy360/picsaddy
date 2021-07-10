@@ -59,10 +59,18 @@
         </div>
         <div class="main-menu">
           <ul class="js-clone-nav">
-            <li class="active"><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'bio' %}">Bio</a></li>
-            <li><a href="{% url 'blog' %}">Blog</a></li>
-            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li class="{% if request.path == '/'%} active {% endif %}">
+              <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="{% if request.path == '/bio'%} active {% endif %}">
+              <a href="{% url 'bio' %}">Bio</a>
+            </li>
+            <li class="{% if request.path == '/blog'%} active {% endif %}">
+              <a href="{% url 'blog' %}">Blog</a>
+            </li>
+            <li class="{% if request.path == '/contact/'%} active {% endif %}">
+              <a href="{% url 'contact' %}">Contact</a>
+            </li>
             <li><a href="/admin" target="_blank">Login</a></li>
           </ul>
           <ul class="social js-clone-nav">

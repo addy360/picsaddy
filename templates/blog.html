@@ -1,5 +1,5 @@
-{% extends 'layouts/base.html' %} {% load static %} {% block title %} | Contact
-me {% endblock %} {% block content %}
+{% extends 'layouts/base.html' %} {% load static %} {% block title %} |
+Available blogs {% endblock %} {% block content %}
 <div class="container-fluid photos">
   <div class="row justify-content-center">
     <div class="col-md-8 pt-4">
@@ -14,17 +14,17 @@ me {% endblock %} {% block content %}
         <div class="col-md-12" data-aos="fade-up">
           <div class="d-flex blog-entry align-items-start">
             <div class="mr-5 img-wrap">
-              <a href="blog.html#"
+              <a href="#"
                 ><img src="{{ blog.image.url }}" alt="Image" class="img-fluid"
               /></a>
             </div>
             <div>
               <h2 class="mt-0 mb-2">
-                <a href="blog.html#"> {{ blog.title }} </a>
+                <a href="#"> {{ blog.title }} </a>
               </h2>
               <div class="meta mb-3">
                 Posted by {{ blog.author.username }} on
-                <a href="blog.html#">{{ blog.created_at }}</a>
+                <a href="#">{{ blog.created_at }}</a>
               </div>
               <p>{{ blog.description }}</p>
             </div>
@@ -35,15 +35,6 @@ me {% endblock %} {% block content %}
           <h4>No content at the moment</h4>
         </div>
         {% endfor %}
-        <div class="col-12 text-center">
-          <div class="custom-pagination">
-            <span>1</span>
-            <a href="blog.html#">2</a>
-            <a href="blog.html#">3</a>
-            <span>...</span>
-            <a href="blog.html#">7</a>
-          </div>
-        </div>
       </div>
     </div>
   </div>

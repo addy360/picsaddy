@@ -16,7 +16,7 @@ def trip_value(value):
 
 
 def is_greater_than(value, num):
-    return len(value) > num
+    return len(value) >= num
 
 
 def my_validator(value, validate_funcs):

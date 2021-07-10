@@ -1,4 +1,4 @@
-from pprint import pprint
+from pprint import pp, pprint
 
 from django.shortcuts import render
 
@@ -39,7 +39,10 @@ def category(request, id):
 
 def contact(request):
     if request.method == "POST":
-        res = validate_post_data(request)
-        pprint(res)
+        errors, clean_data = validate_post_data(request)
+        if len(errors):
+            context = {"errors": errors}
+            return render(request, "contact.html", context)
+        print('[+] all data are clean')
 
     return render(request, "contact.html")

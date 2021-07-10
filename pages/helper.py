@@ -1,3 +1,6 @@
+from pprint import pprint
+
+
 def format_categories(categories):
     formated = []
     for cat in categories:
@@ -42,13 +45,13 @@ def should_be_an_email(value):
         return "Should be a valid email"
 
 
-def validator_executor(value, validators=[]):
+def validator_executor(field_name, value, validators=[]):
     res = {}
     validation_errors = my_validator(
         value, validators)
 
     if len(validation_errors):
-        res[value] = validation_errors
+        res[field_name] = validation_errors
     return res
 
 
@@ -61,33 +64,28 @@ def validate_post_data(request):
 
     errors = []
 
-    # fname
-    # validation_errors = my_validator(
-    #     fname, [should_be_string, should_be_greater_than_3])
+    form_data = [
+        {'fname': fname, 'validators': [
+            should_be_string, should_be_greater_than_3]},
+        {'lname': lname, 'validators': [
+            should_be_string, should_be_greater_than_3]},
+        {'email': email, 'validators': [
+            should_be_string, should_be_an_email]},
+        {'subject': subject, 'validators': [
+            should_be_string, should_be_greater_than_3]},
+        {'message': message, 'validators': [
+            should_be_string, should_be_greater_than_3]},
+    ]
 
-    # if len(validation_errors):
-    #     errors['fname'] = validation_errors
-    #     validation_errors = []
-
-    res = validator_executor(
-        fname, [should_be_string, should_be_greater_than_3])
-    errors.append(res)
-
-    # # lname
-    # validation_errors = my_validator(
-    #     lname, [should_be_string, should_be_greater_than_3])
-
-    # if len(validation_errors):
-    #     errors['lname'] = validation_errors
-    #     validation_errors = []
-
-    # # email
-    # validation_errors = my_validator(
-    #     email, [should_be_string, should_be_an_email])
-
-    # if len(validation_errors):
-    #     errors['email'] = validation_errors
-    #     validation_errors = []
+    for fd in form_data:
+        args = list(fd.keys())
+        field_name = args[0]
+        field = fd[args[0]]
+        validators = fd[args[1]]
+        res = validator_executor(field_name,
+                                 field, validators)
+        if len(res.items()):
+            errors.append(res)
 
     cleanValues = {
         "fname": fname,

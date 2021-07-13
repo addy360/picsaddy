@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'picsaddy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dbname',
+        'NAME': 'picsaddy',
         'USER': 'root',
         'PASSWORD': 'password',
     }

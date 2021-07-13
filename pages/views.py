@@ -9,6 +9,7 @@ from pages.models import Bio, Blog, Category, Gallery
 
 def index(request):
     categories = Category.objects.all()
+
     formated = format_categories(categories)
     context = {"categories": formated}
     return render(request, "index.html", context=context)
